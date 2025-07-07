@@ -1,0 +1,31 @@
+-- CreateTable
+CREATE TABLE `Theme` (
+    `id` VARCHAR(191) NOT NULL,
+    `websiteName` VARCHAR(191) NOT NULL,
+    `websiteType` VARCHAR(191) NOT NULL,
+    `industry` VARCHAR(191) NOT NULL,
+    `targetAudience` VARCHAR(191) NOT NULL,
+    `businessDescription` VARCHAR(191) NOT NULL,
+    `designStyle` VARCHAR(191) NOT NULL,
+    `colorScheme` VARCHAR(191) NOT NULL,
+    `selectedTheme` VARCHAR(191) NULL,
+    `fontPairing` VARCHAR(191) NOT NULL,
+    `brandColors` VARCHAR(191) NOT NULL,
+    `selectedFeatures` TEXT NOT NULL,
+    `layoutStyle` VARCHAR(191) NOT NULL,
+    `headerStyle` VARCHAR(191) NOT NULL,
+    `footerStyle` VARCHAR(191) NOT NULL,
+    `animationStyle` VARCHAR(191) NOT NULL,
+    `contentSections` TEXT NOT NULL,
+    `goals` VARCHAR(191) NOT NULL,
+    `budget` VARCHAR(191) NOT NULL,
+    `timeline` VARCHAR(191) NOT NULL,
+    `existingWebsite` VARCHAR(191) NOT NULL,
+    `contactInfo` VARCHAR(191) NOT NULL,
+    `socialMedia` TEXT NOT NULL,
+    `additionalRequirements` VARCHAR(191) NOT NULL,
+    `filePath` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

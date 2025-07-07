@@ -1,0 +1,13 @@
+
+// src/templates/theme/index.php.hbs
+<?php get_header(); ?>
+<div class="content">
+  <h1>Welcome to {{basicInfo.websiteName}}</h1>
+  {{#each layoutStructure.contentSections}}
+  <section class="{{this}}">{{this}} Content</section>
+  {{/each}}
+  {{#each selectedFeatures}}
+  <div class="{{this}}">{{this}} Feature</div>
+  {{/each}}
+</div>
+<?php get_footer(); ?>
