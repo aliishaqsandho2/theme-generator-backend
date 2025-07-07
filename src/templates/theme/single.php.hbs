@@ -1,0 +1,1 @@
+<?php\n/**\n * The template for displaying single posts\n *\n * @package {{basicInfo.websiteName}}\n */\n?>\n<?php get_header(); ?>\n<main>\n    <?php\n    if ( have_posts() ) :\n        while ( have_posts() ) : the_post();\n            the_content();\n        endwhile;\n    else :\n        echo '<p>No content found</p>';\n    endif;\n    ?>\n</main>\n<?php get_footer(); ?> 

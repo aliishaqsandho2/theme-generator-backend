@@ -83,7 +83,18 @@ export const generateTheme = async (themeData: {
   await fs.mkdir(themeDir, { recursive: true });
 
   // Compile templates
-  const templateFiles = ['style.css.hbs', 'index.php.hbs', 'functions.php.hbs', 'page.php.hbs'];
+  const templateFiles = [
+    'style.css.hbs',
+    'index.php.hbs',
+    'functions.php.hbs',
+    'page.php.hbs',
+    'header.php.hbs',
+    'footer.php.hbs',
+    'sidebar.php.hbs',
+    'single.php.hbs',
+    'archive.php.hbs',
+    '404.php.hbs',
+  ];
   for (const file of templateFiles) {
     const templateContent = await fs.readFile(
       path.join(__dirname, '../templates/theme', file),
