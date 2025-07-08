@@ -1,1 +1,24 @@
-<?php\n/**\n * The template for displaying 404 pages (not found)\n *\n * @package {{basicInfo.websiteName}}\n */\n?>\n<?php get_header(); ?>\n<main>\n    <h2>404 - Page Not Found</h2>\n    <p>Sorry, the page you are looking for does not exist.</p>\n</main>\n<?php get_footer(); ?> 
+<?php
+/**
+ * The template for displaying 404 pages (not found)
+ *
+ * @package {{basicInfo.websiteName}}
+ */
+
+get_header();
+?>
+
+<main class="error-404 not-found">
+    <div class="container">
+        <div class="error-content">
+            <h1 class="page-title">404</h1>
+            <h2>Page Not Found</h2>
+            <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.</p>
+            <a href="<?php echo esc_url(home_url('/')); ?>" class="button">Return to Homepage</a>
+        </div>
+    </div>
+</main>
+
+<?php
+get_footer();
+?>

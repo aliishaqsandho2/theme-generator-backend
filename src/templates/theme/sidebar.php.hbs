@@ -1,1 +1,15 @@
-<?php\n/**\n * The sidebar for the theme\n *\n * @package {{basicInfo.websiteName}}\n */\n?>\n<aside id="sidebar">\n    <?php if ( is_active_sidebar( 'main-sidebar' ) ) : ?>\n        <?php dynamic_sidebar( 'main-sidebar' ); ?>\n    <?php else : ?>\n        <p>Add widgets to the sidebar in the WordPress admin.</p>\n    <?php endif; ?>\n</aside>\n 
+<?php
+/**
+ * The sidebar for the theme
+ *
+ * @package {{basicInfo.websiteName}}
+ */
+?>
+
+<aside id="sidebar">
+    <?php if (is_active_sidebar('main-sidebar')) : ?>
+        <?php dynamic_sidebar('main-sidebar'); ?>
+    <?php else : ?>
+        <p>Add widgets to the sidebar in the WordPress admin.</p>
+    <?php endif; ?>
+</aside>

@@ -150,6 +150,7 @@ export const generateTheme = async (themeData: {
       filePath: zipFileName,
     },
   });
+  console.log('Theme created:', theme);
 
   // Clean up theme directory after ZIP is confirmed
   await fs.rm(themeDir, { recursive: true });

@@ -1,1 +1,23 @@
-<?php\n/**\n * The header for the theme\n *\n * @package {{basicInfo.websiteName}}\n */\n?><!DOCTYPE html>\n<html <?php language_attributes(); ?>>\n<head>\n    <meta charset="<?php bloginfo( 'charset' ); ?>">\n    <meta name="viewport" content="width=device-width, initial-scale=1">\n    <title><?php bloginfo('name'); ?><?php wp_title('|', true, 'left'); ?></title>\n    <?php wp_head(); ?>\n</head>\n<body <?php body_class(); ?>>\n<header>\n    <h1>{{basicInfo.websiteName}}</h1>\n    <p>{{basicInfo.businessDescription}}</p>\n</header>\n 
+<?php
+/**
+ * The header for the theme
+ *
+ * @package {{basicInfo.websiteName}}
+ */
+?>
+<!DOCTYPE html>
+<html <?php language_attributes(); ?>>
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+        <?php bloginfo('name'); ?><?php wp_title('|', true, 'left'); ?>
+    </title>
+    <?php wp_head(); ?>
+</head>
+
+<body <?php body_class(); ?>>
+    <header>
+        <h1>{{basicInfo.websiteName}}</h1>
+        <p>{{basicInfo.businessDescription}}</p>
+    </header>
