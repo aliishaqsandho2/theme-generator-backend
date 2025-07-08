@@ -1,0 +1,16 @@
+<?php
+/**
+ * Contact Form Module Template
+ *
+ * @package {{basicInfo.websiteName}}
+ */
+?>
+<section class="contact-module">
+    <h2>Contact Us</h2>
+    <form method="post" action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>">
+        <input type="text" name="cf-name" placeholder="Your Name" required>
+        <input type="email" name="cf-email" placeholder="Your Email" required>
+        <textarea name="cf-message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</section> 

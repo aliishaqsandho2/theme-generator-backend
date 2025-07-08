@@ -1,14 +1,38 @@
-
 <?php
-function {{basicInfo.websiteName}}_theme_setup() {
+function {{phpIdentifier basicInfo.websiteName}}_theme_setup() {
   add_theme_support('title-tag');
   {{#if selectedFeatures}}
   register_nav_menus(array(
-    'primary' => __('Primary Menu', '{{basicInfo.websiteName}}'),
+    'primary' => __('Primary Menu', '{{phpIdentifier basicInfo.websiteName}}'),
   ));
   {{/if}}
   add_theme_support('post-thumbnails');
 }
-add_action('after_setup_theme', '{{basicInfo.websiteName}}_theme_setup');
+add_action('after_setup_theme', '{{phpIdentifier basicInfo.websiteName}}_theme_setup');
+
+function theme_enqueue_scripts() {
+    wp_enqueue_style('theme-style', get_stylesheet_uri());
+    {{#if (includes selectedModules "gallery")}}
+    wp_enqueue_style('gallery-style', get_template_directory_uri() . '/gallery.css');
+    {{/if}}
+    {{#if (includes selectedModules "portfolio")}}
+    wp_enqueue_style('portfolio-style', get_template_directory_uri() . '/portfolio.css');
+    {{/if}}
+}
+add_action('wp_enqueue_scripts', 'theme_enqueue_scripts');
+
+{{#if (includes selectedModules "blog")}}
+function register_blog_post_type() {
+    // Register custom post type for blog if needed
+}
+add_action('init', 'register_blog_post_type');
+{{/if}}
+
+{{#if (includes selectedModules "portfolio")}}
+function register_portfolio_post_type() {
+    // Register custom post type for portfolio
+}
+add_action('init', 'register_portfolio_post_type');
+{{/if}}
 ?>
 

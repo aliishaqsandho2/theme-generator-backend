@@ -4,6 +4,21 @@ import * as path from 'path';
 import * as handlebars from 'handlebars';
 import admZip from 'adm-zip';
 
+// Register the "includes" helper for Handlebars
+handlebars.registerHelper('includes', function(array, value) {
+  if (Array.isArray(array)) {
+    return array.includes(value);
+  }
+  return false;
+});
+
+// Register the "phpIdentifier" helper for Handlebars
+handlebars.registerHelper('phpIdentifier', function(str) {
+  return String(str)
+    .replace(/[^A-Za-z0-9_]/g, '_') // Replace non-alphanumeric with _
+    .replace(/^([^A-Za-z_])/, '_$1'); // Ensure starts with letter or underscore
+});
+
 const prisma = new PrismaClient();
 
 export const generateTheme = async (themeData: {
@@ -40,6 +55,7 @@ export const generateTheme = async (themeData: {
     socialMedia: string[];
     additionalRequirements: string;
   };
+  selectedModules?: string[];
 }) => {
   // Normalize array fields to strings for Handlebars
   const normalizedData = {
@@ -82,7 +98,7 @@ export const generateTheme = async (themeData: {
   const themeDir = path.join(__dirname, '../../generated-themes', normalizedData.basicInfo.websiteName.replace(/\s+/g, '-') || 'theme');
   await fs.mkdir(themeDir, { recursive: true });
 
-  // Compile templates
+  // Compile base theme templates
   const templateFiles = [
     'style.css.hbs',
     'index.php.hbs',
@@ -104,6 +120,24 @@ export const generateTheme = async (themeData: {
     const output = template(normalizedData);
     const outputFile = file.replace('.hbs', '');
     await fs.writeFile(path.join(themeDir, outputFile), output);
+  }
+
+  // Compile selected module templates
+  if (Array.isArray(themeData.selectedModules)) {
+    for (const moduleName of themeData.selectedModules) {
+      const moduleDir = path.join(__dirname, '../templates/modules');
+      const moduleFile = `${moduleName}.php.hbs`;
+      const modulePath = path.join(moduleDir, moduleFile);
+      try {
+        const moduleTemplateContent = await fs.readFile(modulePath, 'utf-8');
+        const moduleTemplate = handlebars.compile(moduleTemplateContent);
+        const moduleOutput = moduleTemplate(normalizedData);
+        const moduleOutputFile = `${moduleName}.php`;
+        await fs.writeFile(path.join(themeDir, moduleOutputFile), moduleOutput);
+      } catch (err) {
+        console.warn(`Module template not found or error rendering: ${moduleName}`, err);
+      }
+    }
   }
 
   // Create zip file
